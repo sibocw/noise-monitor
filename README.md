@@ -7,6 +7,8 @@ This is a Python program, designed to run on a Raspberry Pi, that
 
 Its intended use is a noise monitor. Be careful not to leak the data, as it's literally recordings of your private home.
 
+The code is written to run reliably and minimally on a Raspberry Pi; therefore the code might not follow the usual Python best practices.
+
 ## User guide
 > [!NOTE]
 > Specific procedures here (e.g. virtual environment management) can be adopted for your needs.
