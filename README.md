@@ -1,4 +1,4 @@
-# Noise Monitor
+# neighborhood Noise Monitor
 This is a Python program, designed to run on a Raspberry Pi, that
 - continuously records audio with external USB microphone,
 - only records during preset hours,
