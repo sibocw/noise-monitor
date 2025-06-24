@@ -1,9 +1,11 @@
 # Noise Monitor
+This is a Python program, designed to run on a Raspberry Pi, that
+- continuously records audio with external USB microphone,
+- only records during preset hours,
+- uploads recording to Google Cloud Storage, and
+- deletes data after a preset retention period.
 
-- Continuously records audio with external USB microphone
-- Only records during preset hours
-- Uploads recording to Google Cloud Storage
-- Deletes data after a preset retention period
+Its intended use is a noise monitor. Be careful not to leak the data, as it's literally recordings of your private home.
 
 ## User guide
 > [!NOTE]
@@ -24,7 +26,10 @@ pip install -e .
 
 Modify parameters in `noise_monitor/config.py` as needed. The parameters are explained in comments within this file. 
 
-Then, sign up for a Google Cloud account. **IT IS ALWAYS A GOOD IDEA TO [SET A BUDGET LIMIT](https://cloud.google.com/billing/docs/how-to/budgets) ON YOU ACCOUNT. $5 per month should be more than enough for this project.**
+Then, sign up for [a Google Cloud account](https://cloud.google.com/) and create a project.
+
+> [!IMPORTANT]
+> **It's always a good idea to [set a budget limit](https://cloud.google.com/billing/docs/how-to/budgets) on your account!** $5 per month should be more than enough for this project.
 
 Then, create a service account using [Identity and Access Management (IAM)](https://console.cloud.google.com/iam-admin/serviceaccounts). This service account should have `storage.objectAdmin` and `logging.logWriter` roles. Note down this service account's email address. It should follow the format `SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com`.
 
@@ -47,7 +52,7 @@ project_id = "PROJECT_ID"
 bucket_name = "YOUR_STORAGE_BUCKET_NAME"
 remote_path = "ANY_FOLDER_NAME"  # Path in the bucket to store data
 ```
-**This file is not tracked by Git, and you also shouldn't include it in your version tracker** (though if you did do it, it's not catastrophic).
+**This file is not tracked by Git, and you also shouldn't include it in your version tracker** (though if you did do it, it's not catastrophic. People will just know your project ID and bucket name).
 
 Restart a terminal. Now you are ready to run the recorder. To do so, run
 ```shell
